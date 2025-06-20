@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gato loco pastelería</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('tortas.png') no-repeat center center fixed;
+      background-size: cover;
+    }
+    header {
+      background: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .logo {
+      color: hotpink;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    nav a {
+      margin-left: 1rem;
+      text-decoration: none;
+      color: black;
+      font-weight: 500;
+    }
+    .hero {
+      background: rgba(255, 255, 255, 0.8);
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      color: #b1004d;
+    }
+    .hero p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: #88003c;
+    }
+    .hero button {
+      margin-top: 2rem;
+      background: hotpink;
+      border: none;
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    }
+    .products {
+      background: rgba(255,255,255,0.9);
+      padding: 2rem;
+    }
+    .products h2 {
+      text-align: center;
+      color: #222;
+      margin-bottom: 2rem;
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 250px;
+      overflow: hidden;
+      padding: 1rem;
+      text-align: center;
+    }
+    .card img {
+      width: 100%;
+      border-radius: 0.5rem;
+    }
+    .card h3 {
+      margin-top: 1rem;
+      color: #222;
+    }
+    .card p {
+      color: #555;
+      font-size: 0.95rem;
+    }
+    .card .price {
+      font-size: 1.2rem;
+      color: deeppink;
+      font-weight: bold;
+      margin: 1rem 0 0.5rem 0;
+    }
+    .card button {
+      background: hotpink;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    #carrito {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      padding: 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      max-width: 320px;
+      display: none;
+    }
+    #carrito h4 {
+      margin-top: 0;
+    }
+    #carrito ul {
+      padding-left: 20px;
+    }
+    #carrito button, #carrito input, #carrito textarea {
+      margin-top: 0.5rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    #carrito .eliminar {
+      background: red;
+      color: white;
+      border: none;
+      margin-left: 10px;
+      padding: 2px 6px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #cerrarCarrito {
+      background: transparent;
+      color: black;
+      border: none;
+      float: right;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Gato loco pastelería</div>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#" onclick="mostrarProductos()">Productos</a>
+      <a href="#" onclick="mostrarCarrito()">Carrito</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="inicio">
+    <img src="logo.png" alt="Logo Gato Loco" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 1rem;">
+    <h1>Gato loco pastelería</h1>
+    <p>Hechas con amor y los ingredientes más frescos.</p>
+    <button onclick="mostrarProductos()">Ver Productos</button>
+  </section>
+
+  <section class="products" id="productos">
+    <h2>Nuestras Delicias</h2>
+    <div class="cards" id="productosLista">
+      <div class="card">
+        <img src="chessecake.png" alt="Bizcochuelo 18 cms">
+        <h3>Bizcochuelo 18 cms</h3>
+        <p>Torta clásica para toda ocasión.</p>
+        <div class="price">$550</div>
+        <button onclick="agregarAlCarrito(this)">Agregar</button>
+      </div>
+      <div class="card">
+        <img src="chessecake.png" alt="Bizcochuelo 24 cms">
+        <h3>Bizcochuelo 24 cms</h3>
+        <p>Versión grande para compartir.</p>
+        <div class="price">$750</div>
+        <button onclick="agregarAlCarrito(this)">Agregar</button>
+      </div>
+      <div class="card">
+        <img src="chessecake.png" alt="Chajá 24 cms">
+        <h3>Chajá 24 cms</h3>
+        <p>Con frutilla o durazno a elección.</p>
+        <div class="price">$850</div>
+        <button onclick="agregarAlCarrito(this)">Agregar</button>
+      </div>
+      <div class="card">
+        <img src="chessecake.png" alt="Cheesecake 24 cms">
+        <h3>Cheesecake 24 cms</h3>
+        <p>Clásico, suave y delicioso.</p>
+        <div class="price">$950</div>
+        <button onclick="agregarAlCarrito(this)">Agregar</button>
+      </div>
+      <div class="card">
+        <img src="chessecake.png" alt="Mini Cheesecake">
+        <h3>Mini Cheesecake</h3>
+        <p>Ideal para porción individual.</p>
+        <div class="price">$350</div>
+        <button onclick="agregarAlCarrito(this)">Agregar</button>
+      </div>
+      <div class="card">
+        <img src="chessecake.png" alt="Rojel 24 cms">
+        <h3>Rojel 24 cms</h3>
+        <p>Capas crocantes y dulce de leche.</p>
+        <div class="price">$1200</div>
+        <button onclick="agregarAlCarrito(this)">Agregar</button>
+      </div>
+      <div class="card">
+        <img src="chessecake.png" alt="Mini Rojel">
+        <h3>Mini Rojel</h3>
+        <p>Tamaño pequeño, mismo sabor.</p>
+        <div class="price">$400</div>
+        <button onclick="agregarAlCarrito(this)">Agregar</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="carrito">
+    <button id="cerrarCarrito" onclick="cerrarCarrito()">✕</button>
+    <h4>Tu pedido</h4>
+    <ul id="listaCarrito"></ul>
+    <input type="text" id="nombreCliente" placeholder="Tu nombre">
+    <textarea id="notaCliente" placeholder="Notas (dirección, horarios, etc.)"></textarea>
+    <div id="totalCarrito"></div>
+    <button onclick="enviarPedido()">Finalizar compra</button>
+  </div>
+
+  <script>
+    const carrito = [];
+
+    function agregarAlCarrito(btn) {
+      const card = btn.closest('.card');
+      const nombre = card.querySelector('h3').innerText;
+      const precio = parseFloat(card.querySelector('.price').innerText.replace('$',''));
+      carrito.push({nombre, precio});
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      const lista = document.getElementById('listaCarrito');
+      const total = document.getElementById('totalCarrito');
+      lista.innerHTML = '';
+      let suma = 0;
+      carrito.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `${item.nombre} - $${item.precio.toFixed(2)} <button class='eliminar' onclick='eliminarItem(${index})'>X</button>`;
+        lista.appendChild(li);
+        suma += item.precio;
+      });
+      total.innerHTML = `<strong>Total: $${suma.toFixed(2)}</strong>`;
+      document.getElementById('carrito').style.display = carrito.length > 0 ? 'block' : 'none';
+    }
+
+    function eliminarItem(index) {
+      carrito.splice(index, 1);
+      actualizarCarrito();
+    }
+
+    function cerrarCarrito() {
+      document.getElementById('carrito').style.display = 'none';
+    }
+
+    function mostrarProductos() {
+      document.getElementById('inicio').style.display = 'none';
+      document.getElementById('productos').style.display = 'block';
+    }
+
+    function mostrarCarrito() {
+      if (carrito.length > 0) {
+        document.getElementById('carrito').style.display = 'block';
+      }
+    }
+
+    function enviarPedido() {
+      const nombre = document.getElementById('nombreCliente').value;
+      const nota = document.getElementById('notaCliente').value;
+      const numero = '+59891042344';
+      const items = carrito.map(i => `- ${i.nombre} ($${i.precio.toFixed(2)})`).join('\n');
+      const total = carrito.reduce((sum, i) => sum + i.precio, 0);
+      const mensaje = encodeURIComponent(
+        `Hola! Soy ${nombre}\n\nQuiero hacer este pedido:\n${items}\n\nTotal: $${total.toFixed(2)}\n\nNotas: ${nota}`
+      );
+      const url = `https://wa.me/${numero}?text=${mensaje}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
